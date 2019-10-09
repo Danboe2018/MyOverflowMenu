@@ -1,16 +1,12 @@
 package com.webappclouds.myoverflowmenu;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,17 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -40,16 +25,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        RelativeLayout main_view = findViewById(R.id.main_view);
+        switch (item.getItemId()){
+            case R.id.menu_red:
+                if(item.isChecked())
+                    item.setChecked(false);
+                else {
+                    item.setChecked(true);
+                    main_view.setBackgroundColor(Color.RED);
+                    return true;
+                }
+            case R.id.menu_blue:
+                if(item.isChecked())
+                    item.setChecked(false);
+                else {
+                    item.setChecked(true);
+                    main_view.setBackgroundColor(Color.BLUE);
+                    return true;
+                }
+            case R.id.menu_green:
+                if(item.isChecked())
+                    item.setChecked(false);
+                else {
+                    item.setChecked(true);
+                    main_view.setBackgroundColor(Color.GREEN);
+                    return true;
+                }
+            default:return super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
